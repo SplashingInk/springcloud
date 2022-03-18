@@ -1,0 +1,50 @@
+server:
+  port: 2003
+
+spring:
+  application:
+    name: seata-account-service
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: xtl_tx_group
+    nacos:
+      discovery:
+        server-addr: 192.168.188.130:1314
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.188.130:3306/seata_account?rewriteBatchedStatements=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 15320721xzw12340
+
+seata:
+  enabled: true
+  tx-service-group: xtl_tx_group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 192.168.188.130:1314
+      group: SEATA_GROUP
+      cluster: default
+      username: nacos
+      password: nacos
+  config:
+    type: nacos
+    nacos:
+      server-addr: 192.168.188.130:1314
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+feign:
+  hystrix:
+    enabled: true  #激活sentinel对Feign的支持

@@ -1,0 +1,13 @@
+server:
+  port: 96
+
+spring:
+  application:
+    name: nacos-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.188.130:1314
+
+service-url:
+  nacos-user-service: http://nacos-provider

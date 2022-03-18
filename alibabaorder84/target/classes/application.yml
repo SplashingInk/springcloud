@@ -1,0 +1,17 @@
+server:
+  port: 84
+
+spring:
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.188.130:1314
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719  #默认端口8719，如果被占用，则从8719端口+1扫描，直到发现未占用端口
+feign:
+  sentinel:
+    enabled: true  #激活sentinel对Feign的支持

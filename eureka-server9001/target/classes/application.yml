@@ -1,0 +1,13 @@
+server:
+  port: 9001
+eureka:
+  instance:
+    hostname: EUREKA_SERVER_9001 #eureka服务端实例名称
+  client:
+    register-with-eureka: false  #false表示不向注册中心注册自己
+    fetch-registry: false #false表示自己这一端就是注册中心，维护服务实例
+    service-url:
+      defaultZone: http://localhost:9002/eureka/
+  server:
+    enable-self-preservation: false #关闭Eureka的自我保护机制
+    eviction-interval-timer-in-ms: 2000  #心跳时间

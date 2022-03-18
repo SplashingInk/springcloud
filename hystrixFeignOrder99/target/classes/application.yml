@@ -1,0 +1,16 @@
+server:
+  port: 99
+
+spring:
+  application:
+    name: HYSTRIX-OPENFEIGN-ORDER-SERVER
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka,http://localhost:9002/eureka
+feign:
+  hystrix:
+    enabled: true

@@ -1,0 +1,44 @@
+server:
+  port: 8802
+
+spring:
+  application:
+    name: stream-rabbitmq-consumer
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:  #定义名称，用于binding整合
+          type: rabbit #消息组件的类型
+          environment:
+            spring:
+              rabbitmq:
+                #配置在这里无效
+                #host: 192.168.188.128
+                #port: 5672
+                username: joker
+                password: 123456
+                virtual-host: /test
+      bindings:
+        input: #通道的名称
+          destination: studyExchange  #交换机名称
+          contentType: application/json #消息类型，，本次为json,文本使用"text/plain"
+          binder: defaultRabbit #绑定的服务设置
+          group: water #同一组避免重复消费
+  rabbitmq:
+    host: 192.168.188.128
+    port: 5672 # 注意，这里是5672，不是访问界面用的15672，这个是默认值
+    username: joker
+    password: 123456
+    virtual-host: /test
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka,http://localhost:9002/eureka
+  instance:
+    instance-id: receiver-8802.com
+    prefer-ip-address: true  #访问路径可以显示IP地址
+    lease-renewal-interval-in-seconds: 2
+    lease-expiration-duration-in-seconds: 5

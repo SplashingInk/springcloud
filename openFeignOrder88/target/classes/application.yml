@@ -1,0 +1,20 @@
+server:
+  port: 88
+
+spring:
+  application:
+    name: OPENFEIGN-ORDER-SERVER
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka,http://localhost:9002/eureka
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+logging:
+  level:
+    # 监控接口以debug级别显示日志
+    com.xtl.service.PaymentOpenFeignService: debug

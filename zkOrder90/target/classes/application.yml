@@ -1,0 +1,9 @@
+server:
+  port: 90
+
+spring:
+  application:
+    name: cloud-payment-consumer
+  cloud:
+    zookeeper:
+      connect-string: 192.168.188.128:2181

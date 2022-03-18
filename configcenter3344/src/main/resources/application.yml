@@ -1,0 +1,31 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ASmallJoker/springcloud-config.git #github仓库的地址
+          search-paths:
+            - springcloud-config
+      label: master
+  rabbitmq:
+    host: 192.168.188.128
+    port: 5672
+    username: joker
+    password: 123456
+    virtual-host: /test
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9001/eureka,http://localhost:9002/eureka
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
